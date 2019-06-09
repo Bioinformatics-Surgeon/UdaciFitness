@@ -1,5 +1,15 @@
-// utils/helpers.js
+import React from 'react';
+import { View } from 'react-native';
+import {
+  FontAwesome,
+  MaterialIcons,
+  MaterialCommunityIcons
+} from '@expo/vector-icons';
+import { white, black } from './colors';
 
+/* getMetricMetaInfo(): 
+- helper function that will give us information about the UI the we will use depending on the metric that is being asked for ex: bike, run, swim, sleep, eat
+*/
 export function getMetricMetaInfo(metric) {
   const info = {
     run: {
@@ -24,8 +34,8 @@ export function getMetricMetaInfo(metric) {
       type: 'steppers',
       getIcon() {
         return (
-          <View style={[styles.iconContainer, { backgroundColor: orange }]}>
-            <MaterialCommunityIcons name='bike' color={white} size={32} />
+          <View>
+            <MaterialCommunityIcons name='bike' color={black} size={32} />
           </View>
         );
       }
@@ -75,6 +85,11 @@ export function getMetricMetaInfo(metric) {
   };
 
   return typeof metric === 'undefined' ? info : info[metric];
+  /*
+  above we are saying that if we dont' want to pass anything along with the getMetricMetaInfo() then we want to return the entire object 'info', otherwise return info.'whatever is passed in'
+
+  - this is done with the ternary operator and the info[metric] 
+  */
 }
 
 export function isBetween(num, x, y) {
